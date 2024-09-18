@@ -1,0 +1,9 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+FROM mcr.microsoft.com/cbl-mariner/base/python:3
+
+# Install required packages
+RUN tdnf install -y \
+        build-essential \
+        dnf \
+        python3-dnf

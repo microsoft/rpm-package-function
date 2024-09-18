@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "rpm-package-function"
+version = "0.1.0"
+description = "Functionality to create an RPM package repository in Azure Blob Storage"
+authors = ["Max Dymond <max.dymond@microsoft.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+azure-functions = "^1.20.0"
+azure-identity = "^1.17.1"
+azure-storage-blob = "^12.22.0"
+createrepo-c = "^1.1.4"
+rpmfile = "^2.1.0"
+zstandard = "^0.22.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.11.2"
+flake8 = "^7.1.1"
+flake8-black = "^0.3.6"
+flake8-isort = "^6.1.1"
+flake8-docstrings = "^1.7.0"
+black = "^24.8.0"
+pytest = "^8.3.3"
+pylint = "^3.2.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+# Script to create resources in Azure
+create-resources = "rpm_package_function.tooling.create_resources:run"
+
+[tool.isort]
+profile = "black"
+
+[[tool.mypy.overrides]]
+module = ["rpmfile.*", "createrepo_c.*"]
+ignore_missing_imports = true
