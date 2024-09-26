@@ -1,6 +1,18 @@
 name: Lint
 
-on: [push]
+on:
+  push:
+    tags:
+      # Full version
+      - "[0-9]+.[0-9]+.[0-9]+"
+      # Prerelease version
+      - "[0-9]+.[0-9]+.[0-9]+-*"
+
+  pull_request:
+    branches:
+      # Trigger on pull requests into main
+      - main
+    types: [ opened, synchronize ]
 
 permissions:
   contents: read
